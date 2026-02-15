@@ -20,9 +20,12 @@ load_dotenv()
 app = FastAPI(title="Telegram Channel Downloader API")
 
 # Get allowed origins from environment variable
-# Default to localhost for development, but allow multiple origins
-frontend_urls = os.getenv("FRONTEND_URLS", "http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001,http://127.0.0.1:3001")
+# Default includes production frontend and localhost for development
+frontend_urls = os.getenv("FRONTEND_URLS", "https://miniature-chainsaw-dun.vercel.app,http://localhost:3000,http://127.0.0.1:3000")
 allowed_origins = [url.strip() for url in frontend_urls.split(",") if url.strip()]
+
+# Log allowed origins for debugging (remove in production if needed)
+print(f"CORS Allowed Origins: {allowed_origins}")
 
 # CORS middleware
 app.add_middleware(
