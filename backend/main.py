@@ -19,10 +19,15 @@ load_dotenv()
 
 app = FastAPI(title="Telegram Channel Downloader API")
 
+# Get allowed origins from environment variable
+# Default to localhost for development, but allow multiple origins
+frontend_urls = os.getenv("FRONTEND_URLS", "http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001,http://127.0.0.1:3001")
+allowed_origins = [url.strip() for url in frontend_urls.split(",") if url.strip()]
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:3001", "http://127.0.0.1:3001"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
