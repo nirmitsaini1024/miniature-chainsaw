@@ -2,6 +2,8 @@
 
 A modern web application to browse and download files from Telegram channels with a beautiful UI, secure authentication, and batch download support.
 
+![Application Screenshot](Screenshot%20from%202026-02-16%2005-17-17.png)
+
 ## 🚀 Features
 
 - **Secure Authentication**: Phone number verification with OTP and 2FA support
